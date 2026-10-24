@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Paqueteria-Sockes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbb1c9225f96556989e8676e871f26c64a0777e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a1dae5321e307d308903c80ead67b74857f7cd9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Paqueteria-Sockes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Paqueteria-Sockes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

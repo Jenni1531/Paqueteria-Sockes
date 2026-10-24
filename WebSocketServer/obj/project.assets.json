@@ -88,11 +88,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebsocketsServer\\Paqueteria-Sockes.csproj",
-      "projectName": "Paqueteria-Sockes",
-      "projectPath": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebsocketsServer\\Paqueteria-Sockes.csproj",
+      "projectUniqueName": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebSocketServer\\WebSocketServer.csproj",
+      "projectName": "WebSocketServer",
+      "projectPath": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebSocketServer\\WebSocketServer.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebsocketsServer\\obj\\",
+      "outputPath": "D:\\Repositorios de Git\\Nueva carpeta\\Paqueteria-Sockes\\WebSocketServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"

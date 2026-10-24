@@ -1,6 +1,0 @@
-@Paqueteria_Sockes_HostAddress = http://localhost:5204
-
-GET {{Paqueteria_Sockes_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
