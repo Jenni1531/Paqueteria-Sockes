@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedido de Calzado</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="signalr.js"></script>
 
     <style>
@@ -42,167 +39,10 @@
     <input type="text" id="txtDestino" autocomplete="off" placeholder="Latitud"><input type="text" id="txtDestino2" autocomplete="off" placeholder="Longitud">
     <br><br/>
     <button id="btnEnviar">Enviar</button>
+    <button id="btnHistorial">Historial</button>
     
-    <div style="max-width: 500px; max-height: 500px">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div id="contenedor"></div> 
     <div id="map"></div>
 
-    <script>
-        let map = L.map('map').setView([19.883504, -97.393235], 5);
-        const btn = document.getElementById("btnEnviar");
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19, 
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        const conexion = new signalR.HubConnectionBuilder()
-            .withUrl("https://localhost:7036/pedido")
-            .withAutomaticReconnect()
-            .build();
-
-        let marcadorOrigen = null;
-        let marcadorDestino = null;
-        let rutaLinea = L.polyline([], { color: 'blue' }).addTo(map);
-
-        function congelarFormulario(pedido) {
-            document.getElementById("txtNombre").value = pedido.nombre;
-            document.getElementById("txtTelefono").value = pedido.telefono;
-            document.getElementById("txtTalla").value = pedido.talla;
-            document.getElementById("txtOrigen").value = pedido.origen;
-            document.getElementById("txtOrigen2").value = pedido.origen2;
-            document.getElementById("txtDestino").value = pedido.destino;
-            document.getElementById("txtDestino2").value = pedido.destino2;
-
-            document.getElementById("txtNombre").disabled = true;
-            document.getElementById("txtTelefono").disabled = true;
-            document.getElementById("txtTalla").disabled = true;
-            document.getElementById("txtOrigen").disabled = true;
-            document.getElementById("txtOrigen2").disabled = true;
-            document.getElementById("txtDestino").disabled = true;
-            document.getElementById("txtDestino2").disabled = true;
-            
-            btn.disabled = true;
-            btn.innerText = "Pedido Registrado";
-
-            if (pedido.origen && pedido.origen2) {
-                const coordsOrigen = [pedido.origen, pedido.origen2];
-                if (marcadorOrigen) map.removeLayer(marcadorOrigen);
-                marcadorOrigen = L.marker(coordsOrigen).addTo(map).bindPopup("<b>Origen</b>");
-            }
-
-            if (pedido.destino && pedido.destino2) {
-                const coordsDestino = [pedido.destino, pedido.destino2];
-                if (marcadorDestino) map.removeLayer(marcadorDestino);
-                marcadorDestino = L.marker(coordsDestino).addTo(map).bindPopup("<b>Destino</b>");
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const pedidoGuardado = localStorage.getItem("pedidoCliente");
-
-            if (pedidoGuardado) {
-                const pedido = JSON.parse(pedidoGuardado);
-                congelarFormulario(pedido);
-            } else {
-                obtenerOrigen();
-            }
-        });
-
-        function obtenerOrigen() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        let lat = position.coords.latitude.toFixed(6);
-                        let lng = position.coords.longitude.toFixed(6);
-                        let coords = [position.coords.latitude, position.coords.longitude];
-
-                        if (marcadorOrigen) {
-                            marcadorOrigen.setLatLng(coords);
-                        } else {
-                            marcadorOrigen = L.marker(coords).addTo(map);
-                        }
-
-                        marcadorOrigen.bindPopup(`<b>Origen (GPS)</b><br>${lat}, ${lng}`);
-
-                        document.getElementById('txtOrigen').value = `${lat}`;
-                        document.getElementById('txtOrigen2').value = `${lng}`;
-                    },
-                    (error) => {
-                        console.warn("No se pudo obtener la geolocalización: ", error.message);
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 0
-                    }
-                );
-            }
-        }
-
-        map.on('click', function(e) {
-            if (btn.disabled) return; 
-
-            let lat = e.latlng.lat.toFixed(6);
-            let lng = e.latlng.lng.toFixed(6);
-
-            if (marcadorDestino) {
-                marcadorDestino.setLatLng(e.latlng);
-            } else {
-                marcadorDestino = L.marker(e.latlng).addTo(map);
-            }
-
-            marcadorDestino.bindPopup(`<b>Destino</b><br>${lat}, ${lng}`).openPopup();
-            document.getElementById('txtDestino').value = `${lat}`;
-            document.getElementById('txtDestino2').value = `${lng}`;
-        });
-
-        conexion.on("pedido", function (nombre, telefono, talla, origen, origen2, destino, destino2, fecha) {
-            console.log("Pedido registrado en servidor:", { nombre, telefono, talla, origen, origen2, destino, destino2, fecha });
-        });
-
-        conexion.on("actualizacionRuta", function (lat, lng, estatus) {
-            console.log("Nueva ubicación recibida:", lat, lng, estatus);
-
-            rutaLinea.addLatLng([lat, lng]);
-
-            if (marcadorDestino) {
-                marcadorDestino.setLatLng([lat, lng]);
-                marcadorDestino.bindPopup(`<b>Estado:</b> ${estatus}<br>Lat: ${lat}, Lng: ${lng}`).openPopup();
-            }
-        });
-
-        btn.addEventListener("click", async () => {
-            const pedido = {
-                nombre: document.getElementById("txtNombre").value,
-                telefono: document.getElementById("txtTelefono").value,
-                talla: parseInt(document.getElementById("txtTalla").value) || 0,
-                origen: parseFloat(document.getElementById("txtOrigen").value) || 0,
-                origen2: parseFloat(document.getElementById("txtOrigen2").value) || 0,
-                destino: parseFloat(document.getElementById("txtDestino").value) || 0,
-                destino2: parseFloat(document.getElementById("txtDestino2").value) || 0
-            };
-
-            if (!pedido.nombre || !pedido.destino) {
-                alert("Por favor ingresa tu nombre y selecciona el destino en el mapa.");
-                return;
-            }
-
-            localStorage.setItem("pedidoCliente", JSON.stringify(pedido));
-
-            congelarFormulario(pedido);
-
-            conexion.invoke("generarPedido", pedido.nombre, pedido.telefono, pedido.talla, pedido.origen, pedido.origen2, pedido.destino, pedido.destino2)
-                .catch(function (err) {
-                    console.error("Error al enviar el pedido mediante SignalR:", err.toString());
-                });
-        });
-
-        conexion.start()
-            .then(() => console.log("Conexión Exitosa"))
-            .catch(e => console.log("Error al conectar:", e));
-    </script>
+    <script src="solicitud.js"></script>
 </body>
 </html>

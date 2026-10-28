@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Vista - Actualización de Paquete</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="signalr.js"></script>
+
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Panel de Actualización de Ruta</h1>
+    <h3 id="infoCliente">Cargando datos del pedido...</h3>
+
+    <div id="map"></div>
+
+    <button id="btnConfirmarPunto" disabled>Confirmar Ubicación Actual</button>
+
+    <br><br>
+
+    <h3>Puntos de paso del paquete</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Estado</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCoordenadas">
+        </tbody>
+    </table>
+
+    <script src="mapa.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pedidos</title>
+
+    <script src="signalr.js"></script>
+</head>
+<body>
+
+    <h1>Historial de Solicitudes</h1>
+
+    <button id="btnRegresar">Regresar</button>
+    <br><br>
+
+    <div id="contenedor-tabla">
+        <table border="1" style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <tr style="background-color: #f2f2f2;">
+                        <th># Punto</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Estado</th>
+                        <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody id="tablaCuerpo">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="tabla.js"></script>
+</body>
+</html>
