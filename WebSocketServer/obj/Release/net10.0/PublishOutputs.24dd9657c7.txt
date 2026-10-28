@@ -1,0 +1,9 @@
+E:\Uni\PaqueteriaServidor\WebSocketServer.exe
+E:\Uni\PaqueteriaServidor\appsettings.Development.json
+E:\Uni\PaqueteriaServidor\appsettings.json
+E:\Uni\PaqueteriaServidor\WebSocketServer.dll
+E:\Uni\PaqueteriaServidor\WebSocketServer.deps.json
+E:\Uni\PaqueteriaServidor\WebSocketServer.runtimeconfig.json
+E:\Uni\PaqueteriaServidor\WebSocketServer.pdb
+E:\Uni\PaqueteriaServidor\Microsoft.AspNetCore.OpenApi.dll
+E:\Uni\PaqueteriaServidor\Microsoft.OpenApi.dll

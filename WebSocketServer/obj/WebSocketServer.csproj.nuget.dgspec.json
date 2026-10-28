@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj": {}
+    "E:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj": {}
   },
   "projects": {
-    "e:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj": {
+    "E:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj",
+        "projectUniqueName": "E:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj",
         "projectName": "WebSocketServer",
-        "projectPath": "e:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj",
+        "projectPath": "E:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\WebSocketServer.csproj",
         "packagesPath": "C:\\Users\\janni\\.nuget\\packages\\",
-        "outputPath": "e:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\obj\\",
+        "outputPath": "E:\\Uni\\7mo Semestre\\Moviles\\Unidad_ll\\Examen_unidad_ll\\WebSocketServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
