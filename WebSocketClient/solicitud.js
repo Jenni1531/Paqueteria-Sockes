@@ -5,7 +5,7 @@ const btnHistorial = document.getElementById("btnHistorial");
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
 const conexion = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:5035/pedido")
+    .withUrl("http://localhost:5000/pedido")
     .withAutomaticReconnect()
     .build();
 
