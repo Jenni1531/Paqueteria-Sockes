@@ -27,6 +27,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseWebSockets();
+
 app.UseCors("CorsMapache");
 
 app.MapHub<PedidoHub>("/pedido");
