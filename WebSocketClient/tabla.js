@@ -1,10 +1,9 @@
 const btnRegresar = document.getElementById("btnRegresar");
 
 const conexion = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:5000/pedido")
+    .withUrl("http://172.16.16.57:5000/pedido")
     .withAutomaticReconnect()
     .build();
-
 let contadorPuntos = 0;
 
 function agregarFilaCoordenada(lat, lng, estatus, hora) {
