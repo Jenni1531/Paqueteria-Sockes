@@ -1,5 +1,5 @@
 const conexion = new signalR.HubConnectionBuilder()
-    .withUrl("http://172.16.16.57:5000/pedido")
+    .withUrl("http://172.16.23.204:5000/pedido")
     .withAutomaticReconnect()
     .build();
 
